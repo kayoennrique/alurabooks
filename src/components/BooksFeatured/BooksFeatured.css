@@ -1,0 +1,79 @@
+.BooksFeatured {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: #EBECEE;
+    padding: 48px 0;
+}
+
+.BooksFeatured ul.books {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.BooksFeatured ul.books li {
+    margin: 0 12px;
+}
+
+.BooksFeatured ul.books li img {
+    width: 120px;
+    cursor: pointer;
+    -webkit-transition: width 0.5s ease-in-out;
+    -moz-transition: width 0.5s ease-in-out;
+    -o-transition: width 0.5s ease-in-out;
+    transition: width 0.5s ease-in-out;
+}
+
+.BooksFeatured ul.books li.selected img {
+    width: 180px;
+}
+
+.BooksFeatured .selected-details {
+    width: 350px;
+    max-width: 100%;
+}
+.BooksFeatured .selected-details h5 {
+    font-weight: 700;
+    font-size: 32px;
+    color: #EB9B00;
+    margin-top: 0;
+    margin-bottom: 16px;
+}
+
+.BooksFeatured .selected-details h6 {
+    font-weight: 700;
+    font-size: 18px;
+    color: #002F52;
+    margin-top: 0;
+    margin-bottom: 24px;
+}
+
+.BooksFeatured .selected-details p {
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 21px;
+    color: rgba(0, 0, 0, 0.85);
+    margin-top: 0;
+    margin-bottom: 8px;
+}
+
+.BooksFeatured .selected-details footer {
+    display: flex;
+    justify-content: space-between;
+}
+
+.BooksFeatured .selected-details .price em {
+    display: block;
+    color: rgba(0, 0, 0, 0.54);
+    font-size: 14px;
+    font-style: normal;
+    line-height: 21px;
+}
+
+.BooksFeatured .selected-details .price strong {
+    font-weight: 700;
+    font-size: 36px;
+    line-height: 54px;
+    color: #002F52;
+}

@@ -1,0 +1,15 @@
+.bodyModalRegistration {
+    display: flex;
+    align-items: center;
+    padding-top: 32px;
+}
+
+.bodyModalRegistration form {
+    width: 500px;
+    max-width: 100%;
+}
+
+.bodyModalRegistration form .actions {
+    margin-top: 48px;
+    text-align: center;
+}
