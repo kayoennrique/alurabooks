@@ -1,9 +1,10 @@
 import { Link } from "react-router-dom";
-import BotaoNavegacao from "../NavigationButton";
-import ModalCadastroUsuario from "../ModalRegistrationUser/ModalCadastroUsuario"
+import NavigationButton from "../NavigationButton";
+
 import logo from './assets/logo.png';
-import user from './assets/usuario.svg';
+import user from './assets/user.svg';
 import './BarNavigation.css';
+import ModalRegistrationUser from "../ModalRegistrationUser";
 
 const BarNavigation = () => {
     return (<nav className="ab-navbar">
@@ -46,15 +47,15 @@ const BarNavigation = () => {
         </ul>
         <ul className="actions">
             <li>
-                <BotaoNavegacao text="Login" textAltSrc="Icone representando um usuário" imageSrc={user} />
+                <NavigationButton text="Login" textAltSrc="Icone representando um usuário" imageSrc={user} />
             </li>
             <li>
-                <BotaoNavegacao
+                <NavigationButton
                     text="Cadastrar-se"
                     textAltSrc="Icone representando um usuário"
                     imageSrc={user}
                 />
-                {/* <ModalCadastroUsuario /> */}
+                <ModalRegistrationUser />
             </li>
         </ul>
     </nav>)

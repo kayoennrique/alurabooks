@@ -20,7 +20,7 @@ import './ModalRegistrationUser.css';
         open={true}
         whenClose={() => console.log('fecha ai')}
     >
-        <div className='corpoModalCadastro'>
+        <div className='bodyModalRegistration'>
             <figure>
                 <img src={imageMain} alt="Monitor com uma fechadura e uma pessoa com uma chave logo ao lado." />
             </figure>
@@ -60,9 +60,9 @@ import './ModalRegistrationUser.css';
                     label='Confirmar senha'
                     onChange={setPasswordConfirmed}
                 />
-                <footer>
-                    <AbButton text='Cadastrar' />
-                </footer>
+                <div className="actions">
+                    <AbButton text="Cadastrar"/>
+                </div>
             </form>
         </div>
     </AbModal>);
