@@ -1,6 +1,7 @@
 import axios from "axios";
 import { AbButton, AbModal, AbTextField } from "alurabooks-ds-develop";
 import { useState } from "react";
+import { usePersistToken } from "../../hooks"
 
 import imageMain from './assets/login.png';
 
@@ -16,6 +17,8 @@ const ModalLoginUser = ({ open, whenClose, whenLogin }: PropsModalLoginUser) => 
 
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
+
+    const setToken = usePersistToken();
 
     const whenSubmitFormular = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
