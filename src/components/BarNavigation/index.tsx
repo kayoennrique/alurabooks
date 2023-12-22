@@ -4,11 +4,52 @@ import logo from './assets/logo.png';
 import user from './assets/user.svg';
 import './BarNavigation.css';
 import ModalRegistrationUser from "../ModalRegistrationUser";
+import ModalLoginUser from "../ModalLoginUser"
 import { useState } from "react";
 
 const BarNavigation = () => {
 
     const [openRegistrationModal, setOpenRegistrationModal] = useState(false);
+    const [modalLoginOpen, setModalLoginOpen] = useState(false);
+    const [userIsLogged, setUserIsLogged] = useState(false);
+
+    const whenLogin = () => {
+        setUserIsLogged(true)
+        setModalLoginOpen(false)
+    }
+    const actionsWhenDeslogado = (<>
+        <li>
+            <NavigationButton
+                text="Login"
+                textAltSrc="Icone representando um usuário"
+                imageSrc={user}
+                onClick={() => setModalLoginOpen(true)}
+            />
+            <ModalLoginUser
+                open={modalLoginOpen}
+                whenClose={() => setModalLoginOpen(false)}
+                whenLogin={whenLogin}
+            />
+        </li>
+        <li>
+            <NavigationButton
+                text="Cadastrar-se"
+                textAltSrc="Icone representando um usuário"
+                imageSrc={user}
+                onClick={() => setOpenRegistrationModal(true)}
+            />
+            <ModalRegistrationUser
+                open={openRegistrationModal}
+                whenClose={() => setOpenRegistrationModal(false)}
+            />
+        </li>
+    </>)
+
+    const actionsWhenLogged = (<>
+        <li>
+            <Link to="/minha-conta/pedidos">Minha Conta</Link> 
+        </li>
+    </>)
 
     return (<nav className="ab-navbar">
         <h1 className="logo">
@@ -49,23 +90,7 @@ const BarNavigation = () => {
             </li>
         </ul>
         <ul className="actions">
-            <li>
-                <NavigationButton
-                    text="Login"
-                    textAltSrc="Icone representando um usuário"
-                    imageSrc={user} />
-            </li>
-            <li>
-                <NavigationButton
-                    text="Cadastrar-se"
-                    textAltSrc="Icone representando um usuário"
-                    imageSrc={user}
-                    onClick={() => setOpenRegistrationModal(true)}
-                />
-                <ModalRegistrationUser
-                    open={openRegistrationModal}
-                    whenClose={() => setOpenRegistrationModal(false)} />
-            </li>
+            {userIsLogged ? actionsWhenLogged : actionsWhenDeslogado}
         </ul>
     </nav>)
 }
