@@ -6,7 +6,12 @@ import imageMain from './assets/login.png';
 
 import './ModalRegistrationUser.css';
 
- const ModalRegistrationUser = () => {
+interface PropsModalRegistrationUser {
+    open: boolean
+    whenClose: () => void
+}
+
+const ModalRegistrationUser = ({ open, whenClose } : PropsModalRegistrationUser) => {
 
         const [name, setName] = useState('');
         const [email, setEmail] = useState('');
@@ -37,6 +42,7 @@ import './ModalRegistrationUser.css';
                     setCep('')
                     setPassword('')
                     setPasswordConfirmed('')
+                    whenClose()
                 })
                 .catch(() => {
                     alert('OPS! Alguma coisa deu errado!')
@@ -45,8 +51,8 @@ import './ModalRegistrationUser.css';
 
     return (<AbModal
         title="Cadastrar"
-        open={true}
-        whenClose={() => console.log('fecha ai')}
+        open={open}
+        whenClose={whenClose}
     >
         <div className='bodyModalRegistration'>
             <figure>
