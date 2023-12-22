@@ -1,5 +1,6 @@
 import { AbButton, AbModal, AbTextField } from "alurabooks-ds-develop";
 import { useState } from "react";
+import axios from "axios";
 
 import imageMain from './assets/login.png';
 
@@ -15,6 +16,33 @@ import './ModalRegistrationUser.css';
         const [password, setPassword] = useState('');
         const [passwordConfirmed, setPasswordConfirmed] = useState('');
 
+        const whenSubmitFormular = (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault()
+            const user = {
+                name,
+                email,
+                password,
+                address,
+                cep,
+                complement
+            }
+    
+            axios.post('http://localhost:8000/public/registrar', user)
+                .then(() => {
+                    alert('Usuário foi cadastrado com sucesso!')
+                    setName('')
+                    setEmail('')
+                    setAddress('')
+                    setComplement('')
+                    setCep('')
+                    setPassword('')
+                    setPasswordConfirmed('')
+                })
+                .catch(() => {
+                    alert('OPS! Alguma coisa deu errado!')
+                })
+        }
+
     return (<AbModal
         title="Cadastrar"
         open={true}
@@ -24,7 +52,7 @@ import './ModalRegistrationUser.css';
             <figure>
                 <img src={imageMain} alt="Monitor com uma fechadura e uma pessoa com uma chave logo ao lado." />
             </figure>
-            <form>
+            <form onSubmit={whenSubmitFormular}>
                 <AbTextField
                     value={name}
                     label='Nome'
@@ -54,11 +82,13 @@ import './ModalRegistrationUser.css';
                     value={password}
                     label='Senha'
                     onChange={setPassword}
+                    type="password"
                 />
                 <AbTextField
                     value={passwordConfirmed}
                     label='Confirmar senha'
                     onChange={setPasswordConfirmed}
+                    type="password"
                 />
                 <div className="actions">
                     <AbButton text="Cadastrar"/>
