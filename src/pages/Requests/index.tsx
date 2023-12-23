@@ -1,10 +1,8 @@
 import { AbButton } from "alurabooks-ds-develop";
-
-import axios from 'axios';
-
-import './Requests.css';
 import { useEffect, useState } from "react";
 import { IRequest } from "../../interfaces/IResquest";
+import http from "../../http";
+import './Requests.css';
 
 const Requests = () => {
 
@@ -13,24 +11,14 @@ const Requests = () => {
     const [requests, setRequests] = useState<IRequest[]>([])
 
     useEffect(() => {
-        const token = sessionStorage.getItem('token')
-        axios.get<IRequest[]>('http://localhost:8000/pedidos', {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(response => setRequests(response.data))
+        http.get<IRequest[]>('pedidos')
+            .then(response => setRequests(response.data))
             .catch(erro => console.log(erro))
     }, [])
 
     const exclude = (request: IRequest) => {
-        const token = sessionStorage.getItem('token')
-        axios.delete('http://localhost:8000/pedidos/' + request.id, {
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        }).then(() => {
-            setRequests(requests.filter(p => p.id !== request.id))
-        })
+        http.delete('pedidos/' + request.id)
+            .then(() => setRequests(requests.filter(p => p.id !== request.id)))
             .catch(erro => console.log(erro))
     }
 

@@ -1,4 +1,3 @@
-import axios from "axios";
 import { AbButton, AbModal, AbTextField } from "alurabooks-ds-develop";
 import { useState } from "react";
 import { usePersistToken } from "../../hooks"
@@ -6,6 +5,7 @@ import { usePersistToken } from "../../hooks"
 import imageMain from './assets/login.png';
 
 import './ModalLoginUser.css';
+import http from "../../http";
 
 interface PropsModalLoginUser {
     open: boolean
@@ -26,7 +26,7 @@ const ModalLoginUser = ({ open, whenClose, whenLogin }: PropsModalLoginUser) => 
             email,
             password,
         }
-        axios.post('http://localhost:8000/public/login', user)
+        http.post('public/login', user)
             .then(reposta => {
                 sessionStorage.setItem('token', reposta.data.access_token)
                 setEmail('')
