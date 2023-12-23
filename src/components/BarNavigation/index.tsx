@@ -10,8 +10,11 @@ import { useState } from "react";
 const BarNavigation = () => {
 
     const [openRegistrationModal, setOpenRegistrationModal] = useState(false);
-    const [modalLoginOpen, setModalLoginOpen] = useState(false);
-    const [userIsLogged, setUserIsLogged] = useState(false);
+    const [modalLoginOpen, setModalLoginOpen] = useState(false); 
+
+    const token = sessionStorage.getItem('token');
+
+    const [userIsLogged, setUserIsLogged] =  useState<boolean>(token != null)
 
     const whenLogin = () => {
         setUserIsLogged(true)
@@ -47,7 +50,7 @@ const BarNavigation = () => {
 
     const actionsWhenLogged = (<>
         <li>
-            <Link to="/minha-conta/pedidos">Minha Conta</Link> 
+            <Link to="/minha-conta/pedidos">Minha Conta</Link>
         </li>
     </>)
 

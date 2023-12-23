@@ -1,0 +1,30 @@
+.LoggedArea {
+    display: flex;
+    width: 900px;
+    max-width: 80%;
+    margin: 0 auto;
+}
+
+.LoggedArea__title {
+    padding: 32px 0;
+    text-align: center;
+    margin-top: 0;
+    margin-bottom: 12px;
+    color: #FFF;
+    background: linear-gradient(97.54deg, #002F52 35.49%, #326589 165.37%);
+}
+
+.LoggedArea .navigation li {
+    padding: 12px 36px;
+    text-align: center;
+    border-bottom: 1px solid #0E3E61;
+    font-size: 16px;
+}
+.LoggedArea .navigation li a {
+    text-decoration: none;
+    color: #002F52;
+}
+
+.LoggedArea .content {
+    flex-grow: 1;
+}
