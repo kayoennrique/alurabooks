@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import NavigationButton from "../NavigationButton";
 import logo from './assets/logo.png';
 import user from './assets/user.svg';
@@ -10,49 +10,24 @@ import { useState } from "react";
 const BarNavigation = () => {
 
     const [openRegistrationModal, setOpenRegistrationModal] = useState(false);
-    const [modalLoginOpen, setModalLoginOpen] = useState(false); 
+    const [modalLoginOpen, setModalLoginOpen] = useState(false);
+
+    let navigate = useNavigate();
 
     const token = sessionStorage.getItem('token');
 
-    const [userIsLogged, setUserIsLogged] =  useState<boolean>(token != null)
+    const [userIsLogged, setUserIsLogged] = useState<boolean>(token != null)
 
     const whenLogin = () => {
         setUserIsLogged(true)
         setModalLoginOpen(false)
     }
-    const actionsWhenDeslogado = (<>
-        <li>
-            <NavigationButton
-                text="Login"
-                textAltSrc="Icone representando um usuário"
-                imageSrc={user}
-                onClick={() => setModalLoginOpen(true)}
-            />
-            <ModalLoginUser
-                open={modalLoginOpen}
-                whenClose={() => setModalLoginOpen(false)}
-                whenLogin={whenLogin}
-            />
-        </li>
-        <li>
-            <NavigationButton
-                text="Cadastrar-se"
-                textAltSrc="Icone representando um usuário"
-                imageSrc={user}
-                onClick={() => setOpenRegistrationModal(true)}
-            />
-            <ModalRegistrationUser
-                open={openRegistrationModal}
-                whenClose={() => setOpenRegistrationModal(false)}
-            />
-        </li>
-    </>)
 
-    const actionsWhenLogged = (<>
-        <li>
-            <Link to="/minha-conta/pedidos">Minha Conta</Link>
-        </li>
-    </>)
+    const logOut = () => {
+        setUserIsLogged(false)
+        sessionStorage.removeItem('token')
+        navigate('/')
+    }
 
     return (<nav className="ab-navbar">
         <h1 className="logo">
@@ -93,9 +68,50 @@ const BarNavigation = () => {
             </li>
         </ul>
         <ul className="actions">
-            {userIsLogged ? actionsWhenLogged : actionsWhenDeslogado}
+            {!userIsLogged && (<>
+                <li>
+                    <NavigationButton
+                        text="Login"
+                        textAltSrc="Icone representando um usuário"
+                        imageSrc={user}
+                        onClick={() => setModalLoginOpen(true)}
+                    />
+                    <ModalLoginUser
+                        open={modalLoginOpen}
+                        whenClose={() => setModalLoginOpen(false)}
+                        whenLogin={whenLogin}
+                    />
+                </li>
+                <li>
+                    <NavigationButton
+                        text="Cadastrar-se"
+                        textAltSrc="Icone representando um usuário"
+                        imageSrc={user}
+                        onClick={() => setOpenRegistrationModal(true)}
+                    />
+                    <ModalRegistrationUser
+                        open={openRegistrationModal}
+                        whenClose={() => setOpenRegistrationModal(false)}
+                    />
+                </li>
+            </>)}
+            {userIsLogged &&
+                <>
+                    <li>
+                        <Link to="/minha-conta/pedidos">Minha conta</Link>
+                    </li>
+                    <li>
+                        <NavigationButton
+                            text="Logout"
+                            textAltSrc="Icone representando um usuário"
+                            imageSrc={user}
+                            onClick={logOut}
+                        />
+                    </li>
+                </>
+            }
         </ul>
-    </nav>)
+    </nav>);
 }
 
 export default BarNavigation;
