@@ -1,7 +1,16 @@
+import { IPurchaseOption } from "./IPurchaseOption"
+
 export interface IBook {
-    name: string
+    id: number
+    categorie: number
+    title: string
+    slug: string
     description: string
-    author: string
-    image: string
-    price: number
+    isbn: string
+    numberPages: number
+    publication: string
+    imageCover: string
+    author: number
+    optionsPurchase: IPurchaseOption[]
+    about: string
 }

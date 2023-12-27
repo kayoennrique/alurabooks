@@ -1,8 +1,9 @@
 import { AbButton, AbCard } from "alurabooks-ds-develop";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { IBook } from "../../interfaces/IBooks";
 
 import './BooksFeatured.css';
+import { formatter } from "../../utils/currency-formatter.ts";
 
 interface BooksFeaturedProps {
     books: IBook[]
@@ -10,7 +11,17 @@ interface BooksFeaturedProps {
 
 const BooksFeatured = ({ books }: BooksFeaturedProps) => {
 
-    const [selected, selectBook] = useState<IBook>(books[0])
+    const [selected, selectBook] = useState<IBook>();
+
+    useEffect(() => {
+        if (books?.length) {
+            selectBook(books[0])
+
+        }
+    }, [books]);
+
+    const minimumValue = selected ? Math.min(...selected.optionsPurchase.map(op => op.price)) : 0
+
 
     return (<section className="BooksFeatured">
         <div>
@@ -18,11 +29,11 @@ const BooksFeatured = ({ books }: BooksFeaturedProps) => {
                 {books.map(book => {
                     return (
                     <li 
-                        key={book.name}
+                        key={book.title}
                         onClick={() => selectBook(book)} 
-                        className={selected?.name === book.name ? 'selected' : ''}
+                        className={selected?.title === book.title ? 'selected' : ''}
                     >
-                        <img src={book.image} alt={`Capa do livro ${book.name} escrito por ${book.author}`} />
+                        <img src={book.imageCover} alt={`Capa do livro ${book.title} escrito por ${book.author}`} />
                     </li>)
                 })}
             </ul>
@@ -32,13 +43,13 @@ const BooksFeatured = ({ books }: BooksFeaturedProps) => {
                 <header>
                     <h5>Sobre o livro:</h5>
                 </header>
-                <h6>{selected.name}</h6>
-                <p>{selected.description}</p>
-                <p>Por: {selected.author}</p>
+                <h6>{selected?.title}</h6>
+                <p>{selected?.description}</p>
+                <p>Por: {selected?.author}</p>
                 <footer>
                     <div className="price">
                         <em>A partir de:</em>
-                        <strong>{Intl.NumberFormat('pt-br', {style: 'currency', currency: 'BRL'}).format(selected.price)}</strong>
+                        <strong>{formatter.format(minimumValue)}</strong>
                     </div>
                     <div>
                         <AbButton text="Comprar" />
