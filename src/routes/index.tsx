@@ -3,7 +3,7 @@ import Home from "../pages/Home";
 import BasePage from "../pages/BasePage";
 import LoggedArea from "../pages/LoggedArea";
 import Requests from "../pages/Requests";
-import Categorie from "../pages/Categories";
+import Categorie from "../pages/Categorie";
 
 const Router = () => {
   return (<Routes>
