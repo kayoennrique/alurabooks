@@ -34,7 +34,16 @@ export const getCategoryBySlug = async (slug: string) => {
   return response.data[0]
 }
 
-  export const getBooksFeatured = async (type: string) => {
-    const response = await http.get<IBook[]>(`public/${type}`)
-    return response.data
-  }
+export const getBooksFeatured = async (type: string) => {
+  const response = await http.get<IBook[]>(`public/${type}`)
+  return response.data
+}
+
+export const getProductsFromCategory = async (categorie: ICategorie) => {
+  const response = await http.get<IBook[]>('books', {
+    params: {
+      categorie: categorie.id
+    }
+  })
+  return response.data
+}
