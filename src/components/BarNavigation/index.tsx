@@ -5,12 +5,23 @@ import user from './assets/user.svg';
 import './BarNavigation.css';
 import ModalRegistrationUser from "../ModalRegistrationUser";
 import ModalLoginUser from "../ModalLoginUser"
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { ICategorie } from "../../interfaces/ICategorie";
+import http from "../../http";
 
 const BarNavigation = () => {
 
     const [openRegistrationModal, setOpenRegistrationModal] = useState(false);
     const [modalLoginOpen, setModalLoginOpen] = useState(false);
+    const [categories, setCategories] = useState<ICategorie[]>([]);
+
+    useEffect(() => {
+        http.get<ICategorie[]>('categorias')
+            .then(resposta => {
+                console.log(resposta.data)
+                setCategories(resposta.data)
+            })
+    }, [])
 
     let navigate = useNavigate();
 
