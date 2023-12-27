@@ -1,0 +1,22 @@
+.book ul {
+    width: 100%;
+}
+
+.book {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    width: 180px;
+    align-items: center;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.book img {
+    max-width: 100%;
+    margin-bottom: 12px;
+}
+
+.book .link-container {
+    margin-top: 16px;
+}
