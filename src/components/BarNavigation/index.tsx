@@ -21,24 +21,24 @@ const BarNavigation = () => {
             .then(response => {
                 console.log(response.data)
                 setCategories(response.data)
-            })
-    }, [])
+            });
+    }, []);
 
     let navigate = useNavigate();
 
     const token = sessionStorage.getItem('token');
 
-    const [userIsLogged, setUserIsLogged] = useState<boolean>(token != null)
+    const [userIsLogged, setUserIsLogged] = useState<boolean>(token != null);
 
     const whenLogin = () => {
         setUserIsLogged(true)
-        setModalLoginOpen(false)
+        setModalLoginOpen(false);
     }
 
     const logOut = () => {
         setUserIsLogged(false)
         sessionStorage.removeItem('token')
-        navigate('/')
+        navigate('/');
     }
 
     return (<nav className="ab-navbar">
@@ -60,7 +60,7 @@ const BarNavigation = () => {
             </li>
         </ul>
         <ul className="actions">
-            {!userIsLogged  && (<>
+            {!userIsLogged && (<>
                 <li>
                     <NavigationButton
                         text="Login"
