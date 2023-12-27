@@ -1,4 +1,5 @@
 import axios from "axios";
+import { ICategorie } from "../interfaces/ICategorie";
 
 const http = axios.create({
     baseURL: 'http://localhost:8000',
@@ -21,4 +22,13 @@ http.interceptors.request.use(function (config) {
     return Promise.reject(error);
   });
 
-export default http;
+export default http
+
+export const getCategoryBySlug = async (slug: string) => {
+  const resposta = await http.get<ICategorie[]>('categorias', {
+    params: {
+      slug
+    }
+  })
+  return resposta.data[0]
+}

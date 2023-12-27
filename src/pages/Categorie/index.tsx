@@ -1,27 +1,12 @@
-import { useEffect, useState } from "react";
-import MainTitle from "../../components/MainTitle"
-import { ICategorie } from "../../interfaces/ICategorie";
-import http from "../../http";
+import MainTitle from "../../components/MainTitle";
+import { getCategoryBySlug } from "../../http";
 import { useParams } from "react-router";
 import Loader from "../../components/Loader";
+import { useQuery } from "@tanstack/react-query";
 
 const Categorie = () => {
-    const [categorie, setCategorie] = useState<ICategorie>();
-    const [isLoading, setIsLoading] = useState(true);
-
-    const params = useParams();
-
-    useEffect(() => {
-        setIsLoading(true)
-        http.get<ICategorie[]>('categorias', {
-            params: {
-                slug: params.slug
-            }
-        }).then(response => {
-           setCategorie(response.data[0])
-           setIsLoading(false)
-        })
-    }, []);
+    const params = useParams()
+    const { data: categorie, isLoading } = useQuery(['categoryBySlug', params.slug], () => getCategoryBySlug(params.slug || ''))
 
     if (isLoading) {
         return <Loader />

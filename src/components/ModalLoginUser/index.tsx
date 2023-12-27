@@ -27,8 +27,8 @@ const ModalLoginUser = ({ open, whenClose, whenLogin }: PropsModalLoginUser) => 
             password,
         }
         http.post('public/login', user)
-            .then(reposta => {
-                sessionStorage.setItem('token', reposta.data.access_token)
+            .then(response => {
+                sessionStorage.setItem('token', response.data.access_token)
                 setEmail('')
                 setPassword('')
                 whenLogin()
