@@ -17,10 +17,10 @@ const BarNavigation = () => {
     const [categories, setCategories] = useState<ICategorie[]>([]);
 
     useEffect(() => {
-        http.get<ICategorie[]>('categories')
+        http.get<ICategorie[]>('categorias')
             .then(response => {
-                console.log(response.data)
-                setCategories(response.data)
+                console.log(response.data);
+                setCategories(response.data);
             });
     }, []);
 
@@ -31,13 +31,13 @@ const BarNavigation = () => {
     const [userIsLogged, setUserIsLogged] = useState<boolean>(token != null);
 
     const whenLogin = () => {
-        setUserIsLogged(true)
+        setUserIsLogged(true);
         setModalLoginOpen(false);
     }
 
     const logOut = () => {
         setUserIsLogged(false)
-        sessionStorage.removeItem('token')
+        sessionStorage.removeItem('token');
         navigate('/');
     }
 
