@@ -3,6 +3,7 @@ import Home from "../pages/Home";
 import BasePage from "../pages/BasePage";
 import LoggedArea from "../pages/LoggedArea";
 import Requests from "../pages/Requests";
+import Categorie from "../pages/Categories";
 
 const Router = () => {
   return (<Routes>
@@ -11,8 +12,9 @@ const Router = () => {
       <Route path='minha-conta' element={<LoggedArea />} >
       <Route path="pedidos" element={<Requests />} />
       </Route>
+      <Route path="/categorias/:slug" element={<Categorie />}/>
     </Route>
-  </Routes>)
+  </Routes>);
 }
 
 export default Router;
