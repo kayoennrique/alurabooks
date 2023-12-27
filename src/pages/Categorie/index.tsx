@@ -3,6 +3,7 @@ import { getCategoryBySlug } from "../../http";
 import { useParams } from "react-router";
 import Loader from "../../components/Loader";
 import { useQuery } from "@tanstack/react-query";
+import BooksList from "../../components/BooksList";
 
 const Categorie = () => {
     const params = useParams()
@@ -14,6 +15,7 @@ const Categorie = () => {
 
     return (<section>
         <MainTitle text={categorie?.name ?? ''} />
+        <BooksList categorie={categorie!} />
     </section>);
 }
 
