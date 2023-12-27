@@ -8,6 +8,7 @@ import ModalLoginUser from "../ModalLoginUser"
 import { useEffect, useState } from "react";
 import { ICategorie } from "../../interfaces/ICategorie";
 import http from "../../http";
+import './BarNavigation.css'
 
 const BarNavigation = () => {
 
@@ -16,10 +17,10 @@ const BarNavigation = () => {
     const [categories, setCategories] = useState<ICategorie[]>([]);
 
     useEffect(() => {
-        http.get<ICategorie[]>('categorias')
-            .then(resposta => {
-                console.log(resposta.data)
-                setCategories(resposta.data)
+        http.get<ICategorie[]>('categories')
+            .then(response => {
+                console.log(response.data)
+                setCategories(response.data)
             })
     }, [])
 
@@ -50,36 +51,16 @@ const BarNavigation = () => {
             <li>
                 <a href="#!">Categorias</a>
                 <ul className="submenu">
-                    <li>
-                        <Link to="/">
-                            Frontend
+                    {categories.map(categorie => (<li key={categorie.id}>
+                        <Link to={`/categorias/${categorie.slug}`}>
+                            {categorie.name}
                         </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Programação
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Infraestrutura
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Business
-                        </Link>
-                    </li>
-                    <li>
-                        <Link to="/">
-                            Design e UX
-                        </Link>
-                    </li>
+                    </li>))}
                 </ul>
             </li>
         </ul>
         <ul className="actions">
-            {!userIsLogged && (<>
+            {!userIsLogged  && (<>
                 <li>
                     <NavigationButton
                         text="Login"
@@ -112,7 +93,7 @@ const BarNavigation = () => {
                         <Link to="/minha-conta/pedidos">Minha conta</Link>
                     </li>
                     <li>
-                        <NavigationButton
+                        <NavigationButton 
                             text="Logout"
                             textAltSrc="Icone representando um usuário"
                             imageSrc={user}
