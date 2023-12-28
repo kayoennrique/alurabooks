@@ -10,8 +10,9 @@ const Newsletter = () => {
             <p>Atualizações de e-books, novos livros, promoções e outros.</p>
         </div>
         <form>
-            <AbTextField 
-                darkmode={false} 
+            <AbTextField
+                label='email'
+                darkmode={false}
                 value={email}
                 onChange={setEmail}
                 placeholder="Cadastre seu e-mail"

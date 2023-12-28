@@ -4,6 +4,7 @@ import BasePage from "../pages/BasePage";
 import LoggedArea from "../pages/LoggedArea";
 import Requests from "../pages/Requests";
 import Categorie from "../pages/Categorie";
+import Book from "../pages/Book";
 
 const Router = () => {
   return (<Routes>
@@ -13,6 +14,7 @@ const Router = () => {
       <Route path="pedidos" element={<Requests />} />
       </Route>
       <Route path="/categorias/:slug" element={<Categorie />}/>
+      <Route path="/book/:slug" element={<Book />} />
     </Route>
   </Routes>);
 }

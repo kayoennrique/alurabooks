@@ -20,6 +20,7 @@ const Home = () => {
         <Banner subtitle="Encontre em nossa estante o que precisa para seu desenvolvimento!" title="Já sabe por onde começar?">
             <form className="search">
                 <AbTextField
+                    label="search"
                     placeholder="Qual será sua próxima leitura?"
                     value={search}
                     onChange={setSearch}
@@ -28,10 +29,10 @@ const Home = () => {
                 />
             </form>
         </Banner>
-        <Title text="ÚLTIMOS LANÇAMENTOS"/>
-        <BooksFeatured books={releases ?? []}/>
-        <Title text="MAIS VENDIDOS"/>
-        <BooksFeatured books={bestSellers ?? []}/>
+        <Title text="ÚLTIMOS LANÇAMENTOS" />
+        <BooksFeatured books={releases ?? []} />
+        <Title text="MAIS VENDIDOS" />
+        <BooksFeatured books={bestSellers ?? []} />
         <TagsCategories />
         <Newsletter />
     </section>)

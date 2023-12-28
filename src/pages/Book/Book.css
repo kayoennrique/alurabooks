@@ -1,0 +1,38 @@
+.book-detail .container {
+    display: flex;
+    justify-content: flex-start;
+}
+.book-detail .container .details {
+    flex-grow: 1;
+    padding-right: 24px;
+}
+.book-detail .container .details {
+    flex-grow: 1;
+    padding-right: 24px;
+}
+.book-detail .container .details h2 {
+    font-size: 24px;
+    color: #002F52;
+}
+.book-detail .container .details h3 {
+    font-size: 16px;
+    color: #002F52;
+}
+.book-detail .container .details p {
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.85);
+}
+.book-detail .container .details p strong {
+    font-weight: 700;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.54);
+}
+.book-detail .container .details .options {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+}
+
+.book-detail .qtdContainer {
+    margin: 32px 0;
+}
