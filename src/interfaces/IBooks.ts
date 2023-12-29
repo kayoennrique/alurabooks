@@ -11,6 +11,6 @@ export interface IBook {
     publication: string
     imageCover: string
     author: number
-    optionsPurchase: IPurchaseOption[]
+    optionPurchase: IPurchaseOption[]
     about: string
 }

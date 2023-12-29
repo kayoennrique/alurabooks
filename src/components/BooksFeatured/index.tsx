@@ -20,7 +20,7 @@ const BooksFeatured = ({ books }: BooksFeaturedProps) => {
         }
     }, [books]);
 
-    const minimumValue = selected ? Math.min(...selected.optionsPurchase.map(op => op.price)) : 0
+    const minimumValue = selected ? Math.min(...selected.optionPurchase.map(op => op.price)) : 0
 
 
     return (<section className="BooksFeatured">

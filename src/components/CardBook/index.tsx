@@ -11,7 +11,7 @@ interface CardBookProps {
 }
 
 const getMinimumValue = (book: IBook) => {
-    return Math.min(...book.optionsPurchase.map(op => op.price));
+    return Math.min(...book.optionPurchase.map(op => op.price));
 }
 
 const CardBook = ( { book } : CardBookProps) => {

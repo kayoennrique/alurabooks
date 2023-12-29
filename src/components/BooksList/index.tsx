@@ -1,19 +1,36 @@
-import { useQuery } from "@tanstack/react-query";
+import { gql, useQuery } from "@apollo/client";
 import { ICategorie } from "../../interfaces/ICategorie";
-import { getProductsFromCategory } from "../../http";
 import CardBook from "../CardBook";
 
 import './BooksList.css'
+import { IBook } from "../../interfaces/IBooks";
 
 interface BooksListProps {
     categorie: ICategorie
 }
 
+const GET_BOOKS = gql`
+    query GetBooks {
+        books {
+            id
+            slug
+            title
+            imageCover
+            optionPurchase {
+                id
+                price
+        }
+        }
+    }
+`;
+
 const BooksList = ({ categorie }: BooksListProps) => {
-    const { data: products } = useQuery(['searchOfBooksByCategory', categorie], () => getProductsFromCategory(categorie))
+
+    const { data } = useQuery<{ books: IBook[] }>(GET_BOOKS)
+    // const { data: products } = useQuery(['searchOfBooksByCategory', categorie], () => getProductsFromCategory(categorie))
 
     return <section className="books">
-    {products?.map(book => <CardBook book={book} key={book.id} />)}
+        {data?.books.map(book => <CardBook book={book} key={book.id} />)}
     </section>
 }
 

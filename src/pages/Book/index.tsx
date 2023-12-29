@@ -36,7 +36,7 @@ const Book = () => {
         return <Loader />
     }
 
-    const options: AbOptionsGroup[] = book.optionsPurchase ? book.optionsPurchase.map(option => ({
+    const options: AbOptionsGroup[] = book.optionPurchase ? book.optionPurchase.map(option => ({
         id: option.id,
         body: formatter.format(option.price),
         title: option.title,
