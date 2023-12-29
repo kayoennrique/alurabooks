@@ -27,7 +27,7 @@ http.interceptors.request.use(function (config) {
 export default http
 
 export const getCategoryBySlug = async (slug: string) => {
-  const response = await http.get<ICategorie[]>('categorias', {
+  const response = await http.get<ICategorie[]>('categories', {
     params: {
       slug
     }

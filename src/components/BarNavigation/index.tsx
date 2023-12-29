@@ -17,7 +17,7 @@ const BarNavigation = () => {
     const [categories, setCategories] = useState<ICategorie[]>([]);
 
     useEffect(() => {
-        http.get<ICategorie[]>('categorias')
+        http.get<ICategorie[]>('categories')
             .then(response => {
                 console.log(response.data);
                 setCategories(response.data);
@@ -52,7 +52,7 @@ const BarNavigation = () => {
                 <a href="#!">Categorias</a>
                 <ul className="submenu">
                     {categories.map(categorie => (<li key={categorie.id}>
-                        <Link to={`/categorias/${categorie.slug}`}>
+                        <Link to={`/categories/${categorie.slug}`}>
                             {categorie.name}
                         </Link>
                     </li>))}

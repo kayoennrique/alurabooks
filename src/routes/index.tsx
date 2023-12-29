@@ -13,7 +13,7 @@ const Router = () => {
       <Route path='minha-conta' element={<LoggedArea />} >
       <Route path="pedidos" element={<Requests />} />
       </Route>
-      <Route path="/categorias/:slug" element={<Categorie />}/>
+      <Route path="/categories/:slug" element={<Categorie />}/>
       <Route path="/book/:slug" element={<Book />} />
     </Route>
   </Routes>);
