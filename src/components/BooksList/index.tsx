@@ -1,40 +1,20 @@
-import { gql, useQuery } from "@apollo/client";
 import { ICategorie } from "../../interfaces/ICategorie";
 import CardBook from "../CardBook";
-
-import './BooksList.css'
-import { IBook } from "../../interfaces/IBooks";
 import { useState } from "react";
 import { AbButton, AbTextField } from "alurabooks-ds-develop";
+import { useBooks } from "../../graphql/books/hooks";
+
+import './BooksList.css'
 
 interface BooksListProps {
     categorie: ICategorie
 }
 
-const GET_BOOKS = gql`
-query GetBooks($categorieId: Int, $title: String) {
-    books(categorieId: $categorieId, title: $title) {
-      id
-      slug
-      title
-      imageCover
-      optionPurchase {
-        id
-        price
-      }
-    }
-  }
-`;
-
 const BooksList = ({ categorie }: BooksListProps) => {
 
     const [textSearch, setTextSearch] = useState('');
 
-    const { data, refetch } = useQuery<{ books: IBook[]}>(GET_BOOKS, {
-        variables: {
-            categorieId: categorie.id
-        }
-    })
+    const { data, refetch } = useBooks(categorie);
 
     const searchBooks = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault()
