@@ -36,3 +36,9 @@
 .book-detail .qtdContainer {
     margin: 32px 0;
 }
+
+.book-detail .tags {
+    display: flex;
+    gap: 12px;
+    padding: 16px;
+}

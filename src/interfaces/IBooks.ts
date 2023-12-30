@@ -1,4 +1,6 @@
-import { IPurchaseOption } from "./IPurchaseOption"
+import { IAuthor } from "./IAuthor";
+import { IPurchaseOption } from "./IPurchaseOption";
+import { ITag } from "./ITag";
 
 export interface IBook {
     id: number
@@ -10,7 +12,8 @@ export interface IBook {
     numberPages: number
     publication: string
     imageCover: string
-    author: number
+    author: IAuthor
     optionPurchase: IPurchaseOption[]
     about: string
+    tags: ITag[]
 }

@@ -3,7 +3,7 @@ import { ReactElement } from "react";
 
 const client = new ApolloClient({
     cache: new InMemoryCache(),
-    uri: 'http://localhost:9000/graphql'
+    uri: 'http://localhost:9001/graphql'
 });
 type Props = {
     children: ReactElement

@@ -1,42 +1,41 @@
-import { ICategorie } from "../../interfaces/ICategorie";
-import CardBook from "../CardBook";
-import { useState } from "react";
-import { AbButton, AbTextField } from "alurabooks-ds-develop";
-import { useBooks } from "../../graphql/books/hooks";
+import { useReactiveVar } from "@apollo/client"
+
+import { useEffect, useState } from "react"
+import { useBooks } from "../../graphql/books/hooks"
+import { filterBooksVar, booksVar } from "../../graphql/books/state"
+import { ICategorie } from "../../interfaces/ICategorie"
+import CardBook from "../CardBook"
 
 import './BooksList.css'
-import { useReactiveVar } from "@apollo/client";
-import { booksVar } from "../../graphql/books/state";
+import { AbTextField } from "alurabooks-ds-develop"
 
 interface BooksListProps {
     categorie: ICategorie
 }
 
-const BooksList = ({ categorie }: BooksListProps) => {
+const BooksList  = ({ categorie }: BooksListProps) => {
 
-    const [textSearch, setTextSearch] = useState('');
+    const [textSearch, setTextSearch] = useState('')
 
+    useEffect(() => {
+        filterBooksVar({
+            ...filterBooksVar(),
+            title: textSearch.length >= 3 ? textSearch : ''
+        })
+    }, [textSearch])
+
+    filterBooksVar({
+        ...filterBooksVar(),
+        categorie,
+    })
+    
     const books = useReactiveVar(booksVar);
-    console.log('books =>', books); 
 
-    useBooks(categorie);
-
-    const searchBooks = (e: React.FormEvent<HTMLFormElement>) => {
-        e.preventDefault()
-        if (textSearch) {
-            // refetch({
-            //     categorieId: categorie.id,
-            //     title: textSearch
-            // })
-        }
-    }
+    useBooks()
 
     return <section>
-        <form onSubmit={searchBooks} style={{ maxWidth: '80%', margin: '0 auto', textAlign: 'center' }}>
+        <form style={{ maxWidth: '80%', margin: '0 auto', textAlign: 'center' }}>
             <AbTextField value={textSearch} onChange={setTextSearch} placeholder='Digite o título'/>
-            <div style={{ marginTop: '16px' }}>
-                <AbButton text="Buscar"/>
-            </div>
         </form>
         <div className="books">
             {books.map(book => <CardBook book={book} key={book.id} />)}
@@ -44,4 +43,4 @@ const BooksList = ({ categorie }: BooksListProps) => {
     </section>
 }
 
-export default BooksList;
+export default BooksList 

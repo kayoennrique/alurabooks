@@ -1,11 +1,9 @@
 import { useQuery, useReactiveVar } from "@apollo/client";
 import { IBook } from "../../interfaces/IBooks";
-import { ICategorie } from "../../interfaces/ICategorie";
-import { GET_BOOKS } from "./queries";
+import { GET_BOOK, GET_BOOKS } from "./queries";
 import { booksVar, filterBooksVar } from "./state";
 
-
-export const useBooks = (categorie: ICategorie) => {
+export const useBooks = () => {
     const filter = useReactiveVar(filterBooksVar)
     return useQuery<{ books: IBook[] }>(GET_BOOKS, {
         variables: {
@@ -17,5 +15,13 @@ export const useBooks = (categorie: ICategorie) => {
                 booksVar(data.books)
             }
         },
+    })
+}
+
+export const useBook = (slug: string) => {
+    return useQuery<{ book: IBook }>(GET_BOOK, {
+        variables: {
+            slug
+        }
     })
 }

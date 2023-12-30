@@ -45,7 +45,7 @@ const BooksFeatured = ({ books }: BooksFeaturedProps) => {
                 </header>
                 <h6>{selected?.title}</h6>
                 <p>{selected?.description}</p>
-                <p>Por: {selected?.author}</p>
+                <p>Por: {selected?.author.name}</p>
                 <footer>
                     <div className="price">
                         <em>A partir de:</em>
