@@ -7,5 +7,9 @@ export const useCart = () => {
 }
 
 export const useAddItem = () => {
-    return useMutation(ADD_ITEM);
+    return useMutation(ADD_ITEM, {
+        refetchQueries: [
+            'GetCart'
+        ]
+    });
 }
