@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import { ICategorie } from "../../interfaces/ICategorie";
 import http from "../../http";
 import './BarNavigation.css'
+import MiniCart from "../MiniCart";
 
 const BarNavigation = () => {
 
@@ -91,6 +92,9 @@ const BarNavigation = () => {
                 <>
                     <li>
                         <Link to="/minha-conta/pedidos">Minha conta</Link>
+                    </li>
+                    <li>
+                        <MiniCart />
                     </li>
                     <li>
                         <NavigationButton 

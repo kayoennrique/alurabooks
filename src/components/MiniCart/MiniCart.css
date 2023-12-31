@@ -1,0 +1,22 @@
+.carrt.dropdown {
+    position: relative;
+}
+
+.carrt.dropdown:hover .minicart-content {
+    display: block;
+}
+
+.minicarrinho-content {
+    display: none;
+    position: absolute;
+    left: 0;
+    padding: 24px;
+    background: #fff;
+}
+
+.minicarrinho-content h4 {
+    font-size: 20px;
+    color: #EB9B00;
+    font-weight: 700;
+    white-space: nowrap;
+}
