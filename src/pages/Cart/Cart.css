@@ -1,0 +1,18 @@
+.cart-page .content {
+    width: 820px;
+    max-width: 90%;
+    margin: 0 auto;
+}
+
+.cart-page .content footer {
+    border-top: 1px solid #000;
+    margin-top: 24px;
+    padding-top: 32px;
+    margin-bottom: 128px;
+}
+.cart-page .content footer ul {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    gap: 24px;
+}
