@@ -1,4 +1,4 @@
-import { ReactElement, createContext } from "react";
+import { ReactElement, createContext, useContext } from "react";
 import { ICart } from "../../interfaces/ICart";
 
 export interface ICartContext {
@@ -23,6 +23,10 @@ const CartProvider = ({ children }: CartProviderProps) => {
             {children}
         </CartContext.Provider>
     );
+}
+
+export const useCartContext = () => {
+    return useContext<ICartContext>(CartContext);
 }
 
 export default CartProvider;
