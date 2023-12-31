@@ -5,7 +5,7 @@ import { useCartContext } from "../../contextApi/cart";
 import { formatter } from "../../utils/currency-formatter.ts";
 
 import './Cart.css';
-import ItemCart from "../../components/ItemCart";
+import ItemCart from "./ItemCart";
 
 const Cart = () => {
     const { cart, addItemCart } = useCartContext();

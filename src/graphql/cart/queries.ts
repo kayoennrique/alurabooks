@@ -7,9 +7,11 @@ export const GET_CART = gql`
         itens {
             amount
             optionPurchase {
+                id
                 price
             }
             book {
+                id
                 title
                 description
                 imageCover

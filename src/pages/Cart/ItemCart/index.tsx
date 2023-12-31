@@ -1,15 +1,27 @@
 import { AbInputQuantity } from "alurabooks-ds-develop";
-import { formatter } from "../../utils/currency-formatter.ts";
-import { IItemCart } from "../../interfaces/IItemCart";
+
 import bin from './assets/bin.png';
 
 import './Item-Cart.css';
+import { formatter } from "../../../utils/currency-formatter.ts";
+import { useCartContext } from "../../../contextApi/cart/index";
+import { IItemCart } from "../../../interfaces/IItemCart";
 
 interface ItemCartProps {
     item: IItemCart
 }
 
-const ItemCart = ({ item } : ItemCartProps) => {
+const ItemCart = ({ item }: ItemCartProps) => {
+
+    const { addItemCart } = useCartContext();
+
+    const changeItemQuantity = (amount: number) => {
+        addItemCart({
+            book: item.book,
+            optionPurchase: item.optionPurchase,
+            amount
+        });
+    }
 
     return (
         <div className="item-cart">
@@ -34,7 +46,10 @@ const ItemCart = ({ item } : ItemCartProps) => {
                 </ul>
             </div>
             <div className="amount">
-                <AbInputQuantity value={item.amount} onChange={() => console.log('[AbInputQuantity] - onChange')}/>
+                <AbInputQuantity
+                    value={item.amount}
+                    onChange={changeItemQuantity}
+                />
             </div>
             <div>
                 <button className="btn-exclude">
