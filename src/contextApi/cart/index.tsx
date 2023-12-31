@@ -1,6 +1,6 @@
 import { ReactElement, createContext, useContext } from "react";
 import { ICart } from "../../interfaces/ICart";
-import { useCart } from "../../graphql/cart/hooks";
+import { useAddItem, useCart } from "../../graphql/cart/hooks";
 import { IItemCart } from "../../interfaces/IItemCart";
 
 export interface ICartContext {
@@ -23,13 +23,26 @@ const CartProvider = ({ children }: CartProviderProps) => {
     }
     const { data } = useCart();
 
+    const [addItem] = useAddItem();
+
     const addItemCart = (item: IItemCart) => {
-        console.log('[CartProvider] - addItemCart', item);        
+        addItem({
+            variables:
+            {
+                item: {
+                    bookId: item.book.id,
+                    optionPurchaseId: item.optionPurchase.id,
+                    amount: item.amount
+                }
+            }
+        });
     }
 
     return (
 
-        <CartContext.Provider value={{ cart: data?.cart, addItemCart }}>
+        <CartContext.Provider
+            value={{ cart: data?.cart, addItemCart }}
+        >
             {children}
         </CartContext.Provider>
     );

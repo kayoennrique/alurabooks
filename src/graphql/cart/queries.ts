@@ -21,3 +21,9 @@ export const GET_CART = gql`
     }
  }
 `;
+
+export const ADD_ITEM = gql`
+mutation AddItem ($item: ItemCartInput!) {
+    addItem(item: $item)
+}
+`;
