@@ -8,7 +8,7 @@ import './Cart.css';
 import ItemCart from "../../components/ItemCart";
 
 const Cart = () => {
-    const { cart } = useCartContext();
+    const { cart, addItemCart } = useCartContext();
 
     return (<section className="cart-page">
 
